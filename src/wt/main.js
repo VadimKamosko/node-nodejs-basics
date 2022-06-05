@@ -1,9 +1,12 @@
 import os from "os";
 import path from "path";
 import { Worker } from "worker_threads";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let userCPUCount = os.cpus().length;
-const workerPath = path.resolve("./worker.js");
+const workerPath = path.join(__dirname,"./worker.js");
 
 export const performCalculations = async () => {
   let masOfnumber = Array.from({ length: userCPUCount }, (v, k) => k + 10);
